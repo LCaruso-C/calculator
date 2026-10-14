@@ -1,38 +1,50 @@
-<source src="script.js"></source>
-<source src="style.css"></source>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-  
-<div id ="calculator">
-  <h1>Calculator</h1>
-<div id="display">0</div>
 
-<div class="row">
-  <button class="button digit">7</button>
-  <button class="button digit">8</button>
-  <button class="button digit">9</button>
-  <button class="button operator">/</button>
-</div>
-<div class="row">
-  <button class="buttons digit">4</button>
-  <button class="buttons digit">5</button>
-  <button class="buttons digit">6</button>
-  <button class="buttons operator">*</button>
-</div>
-<div class="row">
-  <button class="buttons digit">1</button>
-  <button class="buttons digit">2</button>
-  <button class="buttons digit">3</button>
-  <button class="buttons operator">-</button>
-</div>
-<div class="row">
-  <button class="buttons digit">0</button>
-  <button class="buttons operator">.</button>
-  <button class="buttons operator">=</button>
-  <button class="buttons operator">+</button>
-</div>
-<div class="row">
-  <button class="buttons operator">CLEAR</button>
-  <button class="buttons operator">BACKSPACE</button>
+<div id="calculator">
+  <div id="display">0</div>
+
+  <div class="row">
+    <button class="btn digit">7</button>
+    <button class="btn digit">8</button>
+    <button class="btn digit">9</button>
+    <button class="btn operator">/</button>
+  </div>
+
+  <div class="row">
+    <button class="btn digit">4</button>
+    <button class="btn digit">5</button>
+    <button class="btn digit">6</button>
+    <button class="btn operator">*</button>
+  </div>
+
+  <div class="row">
+    <button class="btn digit">1</button>
+    <button class="btn digit">2</button>
+    <button class="btn digit">3</button>
+    <button class="btn operator">-</button>
+  </div>
+
+  <div class="row">
+    <button class="btn digit">0</button>
+    <button class="btn" id="decimal">.</button>
+    <button class="btn operator">+</button>
+    <button class="btn" id="equals">=</button>
+  </div>
+
+  <div class="row">
+    <button class="btn" id="clear">CLEAR</button>
+    <button class="btn" id="backspace">⌫</button>
+  </div>
 </div>
 
+<script src="script.js"></script>
 </body>
+</html>

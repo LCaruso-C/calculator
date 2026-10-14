@@ -1,108 +1,128 @@
-function add(a, b) {
-    return a + b;
-}   
-
-function subtract(a, b) {
-    return a - b;
-}
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    if (b === 0) {
-        throw new Error("Cannot divide by zero");
-    }
-    return a / b;
-}
+const display = document.getElementById("display");
 
 let firstNumber = "";
 let secondNumber = "";
-let operator = "";
-let result = "";
+let operator = null;
+let resultDisplayed = false;
 
-function operate(operater, a, b) {
-    switch (operator) {
-        case "+":
-            return add(a, b);
-        case "-":
-            return subtract(a, b);
-        case "*":
-            return multiply(a, b);
-        case "/":
-            return divide(a, b);
-        default:
-            throw new Error("Invalid operator");
-    }
-}   
-
-const display = document.querySelector(".display"); 
-
-function updateDisplay() {
-    display.textContent = result;
+function updateDisplay(value) {
+  display.textContent = value;
 }
 
-const buttons = document.querySelectorAll(".button");
-buttons.forEach(button => {
-    button.addEventListener("click", () => {
-        const value = button.textContent;
-        if (!isNaN(value)) {
-            if (operator === "") {
-                firstNumber += value;
-                result = firstNumber;
-            } else {
-                secondNumber += value;
-                result = secondNumber;
-            }
-        } else if (value === "=") {
-            if (firstNumber !== "" && secondNumber !== "" && operator !== "") {
-                result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
-                firstNumber = result.toString();
-                secondNumber = "";
-                operator = "";
-            }
-        } else if (value === "C") {
-            firstNumber = "";
-            secondNumber = "";
-            operator = "";
-            result = "";
-        } else {
-            if (firstNumber !== "") {
-                operator = value;
-            }
-        }
-        updateDisplay();
-    });
-});     
+function add(a, b) { return a + b; }
+function subtract(a, b) { return a - b; }
+function multiply(a, b) { return a * b; }
+function divide(a, b) {
+  if (b === 0) return "Bruh… you tried dividing by zero";
+  return a / b;
+}
 
+function operate(op, a, b) {
+  a = Number(a);
+  b = Number(b);
+  switch (op) {
+    case "+": return add(a, b);
+    case "-": return subtract(a, b);
+    case "*": return multiply(a, b);
+    case "/": return divide(a, b);
+  }
+}
 
-document.addEventListener("keydown", (event) => {
-    const key = event.key;
-    if (!isNaN(key)) {
-        if (operator === "") {
-            firstNumber += key;
-            result = firstNumber;
-        } else {
-            secondNumber += key;
-            result = secondNumber;
-        }
-    } else if (key === "=" || key === "Enter") {
-        if (firstNumber !== "" && secondNumber !== "" && operator !== "") {
-            result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
-            firstNumber = result.toString();
-            secondNumber = "";
-            operator = "";
-        }
-    } else if (key === "c" || key === "C") {
-        firstNumber = "";
-        secondNumber = "";
-        operator = "";
-        result = "";
-    } else if (["+", "-", "*", "/"].includes(key)) {
-        if (firstNumber !== "") {
-            operator = key;
-        }
+// DIGIT BUTTONS
+document.querySelectorAll(".digit").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (resultDisplayed) {
+      firstNumber = "";
+      resultDisplayed = false;
     }
-    updateDisplay();
-}); 
+
+    if (!operator) {
+      firstNumber += btn.textContent;
+      updateDisplay(firstNumber);
+    } else {
+      secondNumber += btn.textContent;
+      updateDisplay(secondNumber);
+    }
+  });
+});
+
+// OPERATOR BUTTONS
+document.querySelectorAll(".operator").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const op = btn.textContent;
+
+    // Prevent double operators
+    if (operator && secondNumber === "") {
+      operator = op;
+      return;
+    }
+
+    // Auto-evaluate if full equation exists
+    if (firstNumber && operator && secondNumber) {
+      let result = operate(operator, firstNumber, secondNumber);
+
+      if (typeof result === "number") {
+        result = Math.round(result * 1000) / 1000;
+      }
+
+      updateDisplay(result);
+      firstNumber = result.toString();
+      secondNumber = "";
+    }
+
+    operator = op;
+    resultDisplayed = false;
+  });
+});
+
+// EQUALS BUTTON
+document.getElementById("equals").addEventListener("click", () => {
+  if (!firstNumber || !operator || !secondNumber) return;
+
+  let result = operate(operator, firstNumber, secondNumber);
+
+  if (typeof result === "number") {
+    result = Math.round(result * 1000) / 1000;
+  }
+
+  updateDisplay(result);
+  firstNumber = result.toString();
+  secondNumber = "";
+  operator = null;
+  resultDisplayed = true;
+});
+
+// CLEAR BUTTON
+document.getElementById("clear").addEventListener("click", () => {
+  firstNumber = "";
+  secondNumber = "";
+  operator = null;
+  resultDisplayed = false;
+  updateDisplay("0");
+});
+
+// DECIMAL BUTTON
+document.getElementById("decimal").addEventListener("click", () => {
+  if (!operator) {
+    if (!firstNumber.includes(".")) {
+      firstNumber += ".";
+      updateDisplay(firstNumber);
+    }
+  } else {
+    if (!secondNumber.includes(".")) {
+      secondNumber += ".";
+      updateDisplay(secondNumber);
+    }
+  }
+});
+
+// BACKSPACE BUTTON
+document.getElementById("backspace").addEventListener("click", () => {
+  if (!operator) {
+    firstNumber = firstNumber.slice(0, -1);
+    updateDisplay(firstNumber || "0");
+  } else {
+    secondNumber = secondNumber.slice(0, -1);
+    updateDisplay(secondNumber || "0");
+  }
+});
