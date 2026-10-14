@@ -1,6 +1,6 @@
 body {
     background-color: #f0f0f0;
-    color: #333;                    
+    color: #640303;                    
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -10,10 +10,10 @@ body {
 
 
 calculator {
-    background-color: #fff;
+    background-color: #9c5454;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 50px;
     width: 300px;
 }
 
@@ -28,11 +28,11 @@ calculator {
     margin-bottom: 10px;
 }   
 
-.btn {
-    background-color: #4CAF50;
+.buttons {
+    background-color: #dee4de;
     border: none;
     border-radius: 5px;
-    color: white;
+    color: rgb(17, 10, 10);
     cursor: pointer;
     font-size: 18px;
     margin: 5px;
@@ -43,10 +43,10 @@ calculator {
     background-color: #2196F3;
 }
 .operator {
-    background-color: #FF9800;
+    background-color: #00c3ff;
 }
 #equals {
-    background-color: #f44336;
+    background-color: #1d326b;
 }
 #clear {
     background-color: #9E9E9E;
