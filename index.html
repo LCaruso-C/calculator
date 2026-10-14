@@ -1,33 +1,38 @@
 <source src="script.js"></source>
 <source src="style.css"></source>
-
+<body>
+  
 <div id ="calculator">
   <h1>Calculator</h1>
-<div id="display">  </div>
+<div id="display">0</div>
 
 <div class="row">
-  
-  <button class="buttons digit" onclick="appendToResult('7')">7</button>
-  <button class="buttons digit" onclick="appendToResult('8')">8</button>
-  <button class="buttons digit" onclick="appendToResult('9')">9</button>
-  <button class="buttons operator" onclick="appendToResult('/')">/</button>
-  <br>
-  <button class="buttons digit" onclick="appendToResult('4')">4</button>
-  <button class="buttons digit" onclick="appendToResult('5')">5</button>
-  <button class="buttons digit" onclick="appendToResult('6')">6</button>
-  <button class="buttons operator" onclick="appendToResult('*')">*</button>
-  <br>
-  <button class="buttons digit" onclick="appendToResult('1')">1</button>
-  <button class="buttons digit" onclick="appendToResult('2')">2</button>
-  <button class="buttons digit" onclick="appendToResult('3')">3</button>
-  <button class="buttons operator" onclick="appendToResult('-')">-</button>
-  <br>
-  <button class="buttons digit" onclick="appendToResult('0')">0</button>
-  <button class="buttons operator" onclick="appendToResult('.')">.</button>
-  <button class="buttons operator" onclick="calculateResult()">=</button>
-  <button class="buttons operator" onclick="appendToResult('+')">+</button>
-  <br>
-  <button class="buttons operator" onclick="clearResult()">CLEAR</button>
-  <button class="buttons operator" onclick="deleteLast()">BACKSPACE</button>
+  <button class="button digit">7</button>
+  <button class="button digit">8</button>
+  <button class="button digit">9</button>
+  <button class="button operator">/</button>
+</div>
+<div class="row">
+  <button class="buttons digit">4</button>
+  <button class="buttons digit">5</button>
+  <button class="buttons digit">6</button>
+  <button class="buttons operator">*</button>
+</div>
+<div class="row">
+  <button class="buttons digit">1</button>
+  <button class="buttons digit">2</button>
+  <button class="buttons digit">3</button>
+  <button class="buttons operator">-</button>
+</div>
+<div class="row">
+  <button class="buttons digit">0</button>
+  <button class="buttons operator">.</button>
+  <button class="buttons operator">=</button>
+  <button class="buttons operator">+</button>
+</div>
+<div class="row">
+  <button class="buttons operator">CLEAR</button>
+  <button class="buttons operator">BACKSPACE</button>
 </div>
 
+</body>
