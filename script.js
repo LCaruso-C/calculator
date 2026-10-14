@@ -93,7 +93,7 @@ document.getElementById("equals").addEventListener("click", () => {
 });
 
 // CLEAR BUTTON
-document.getElementById("C").addEventListener("click", () => {
+document.getElementById("Clear").addEventListener("click", () => {
   firstNumber = "";
   secondNumber = "";
   operator = null;
